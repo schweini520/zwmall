@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Register Page</title>
+	<link rel="stylesheet" href="style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="jquery-1.7.min.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$("#register").click(function(){
+			var action = $("#lg-form").attr('action');
+			var form_data = {
+                email: $("#email").val(),
+				username: $("#username").val(),
+				password: $("#password").val(),
+				is_ajax: 2
+			};
+			$.ajax({
+				type: "POST",
+				url: action,
+				data: form_data,
+				success: function(response){
+					if(response == "success")
+						$("#lg-form").slideUp('slow', function(){
+							$("#message").html('<p class="success">You have logged in successfully!</p><p>Redirecting....</p>');
+						});
+					else if (response == "user_exist")
+						$("#message").html('<p class="error">ERROR: UserName have exist.</p>');
+					else if (response == "insert_error")
+						$("#message").html('<p class="error">ERROR: Create User Failure.</p>');
+					else if (response == "insert_success") {
+						$("#message").html('<p class="error">ERROR: Register success....</p>');
+                        setTimeout(window.location.href='index.html', 200000);//过2s执行方法体。
+                        //window.location.href='index.html';
+                        // setTimeout(function(){
+                        //     window.location.href='index.html';
+                        // }, 5000);
+                    }
+					else if (response == "name_null")
+						$("#message").html('<p class="warning">ERROR: UserName is NULL</p>');
+					else if (response == "pwd_null")
+						$("#message").html('<p class="warning">ERROR: PassWord is NULL</p>');
+                    else if (response == "email_null")
+    					$("#message").html('<p class="error">ERROR: EmailAddr is NULL</p>');
+                    else if (response == "email_err")
+    					$("#message").html('<p class="error">ERROR: EmailAddr is Error</p>');
+				}
+			});
+			return false;
+		});
+	});
+	</script>
+</head>
+<body>
+	<div class="lg-container">
+		<h1>User Register</h1>
+		<form action="waka-login.php" id="lg-form" name="lg-form" method="post">
+
+            <div>
+				<label for="email">Email:</label>
+				<input type="text" name="email" id="email" placeholder="email"/>
+				<span class="error">* <?php echo $nameErr;?>
+			</div>
+
+			<div>
+				<label for="username">Username:</label>
+				<input type="text" name="username" id="username" placeholder="username"/>
+				<span class="error">* <?php echo $nameErr;?>
+			</div>
+
+			<div>
+				<label for="password">Password:</label>
+				<input type="password" name="password" id="password" placeholder="password" />
+				<span class="error">* <?php echo $nameErr;?>
+			</div>
+
+			<div id="reg">
+				<button type="submit" id="register">Resgister</button>
+			</div>
+			<div id="cancel">
+				<button type="button" onclick="window.location.href='index.html'">Cancel</button>
+			</div>
+
+		</form>
+		<div id="message"></div>
+	</div>
+</body>
+</html>

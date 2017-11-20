@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Forget my password Page</title>
+	<link rel="stylesheet" href="style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="jquery-1.7.min.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$("#Update").click(function(){
+			var action = $("#lg-form").attr('action');
+			var form_data = {
+                rep_password: $("#rep_password").val(),
+				username: $("#username").val(),
+				password: $("#password").val(),
+				is_ajax: 3
+			};
+			$.ajax({
+				type: "POST",
+				url: action,
+				data: form_data,
+				success: function(response){
+					if(response == "success")
+						$("#lg-form").slideUp('slow', function(){
+							$("#message").html('<p class="success">You have logged in successfully!</p><p>Redirecting....</p>');
+						});
+					else if (response == "user_exist")
+						$("#message").html('<p class="error">ERROR: UserName have exist...can update</p>');
+                    else if (response == "user_not_exist")
+    					$("#message").html('<p class="error">ERROR: This user have not register.</p>');
+					else if (response == "insert_error")
+						$("#message").html('<p class="error">ERROR: Create User Failure.</p>');
+					else if (response == "update_success") {
+						$("#message").html('<p class="error">ERROR: Change Password Success....</p>');
+                        setTimeout(window.location.href='index.html', 200000);//过2s执行方法体。
+                        //window.location.href='index.html';
+                        // setTimeout(function(){
+                        //     window.location.href='index.html';
+                        // }, 5000);
+                    }
+					else if (response == "name_null")
+						$("#message").html('<p class="warning">ERROR: UserName is NULL</p>');
+					else if (response == "pwd_null")
+						$("#message").html('<p class="warning">ERROR: PassWord is NULL</p>');
+                    else if (response == "rep_password_null")
+    					$("#message").html('<p class="error">ERROR: Confirm PassWord must fill</p>');
+                    else if (response == "two_pwd_diff")
+    					$("#message").html('<p class="error">ERROR: Two password is different</p>');
+				}
+			});
+			return false;
+		});
+	});
+	</script>
+</head>
+<body>
+	<div class="lg-container">
+		<h1>Forget My Password</h1>
+		<form action="waka-login.php" id="lg-form" name="lg-form" method="post">
+
+			<div>
+				<label for="username">Username:</label>
+				<input type="text" name="username" id="username" placeholder="username"/>
+				<span class="error">* <?php echo $nameErr;?></span>
+			</div>
+
+			<div>
+				<label for="password">New Password:</label>
+				<input type="password" name="password" id="password" placeholder="new password" />
+				<span class="error">* <?php echo $nameErr;?></span>
+			</div>
+
+            <div>
+				<label for="password">Confirm Password:</label>
+				<input type="password" name="rep_password" id="rep_password" placeholder="confirm password" />
+				<span class="error">* <?php echo $nameErr;?></span>
+			</div>
+
+			<div id="reg">
+				<button type="submit" id="Update">Update</button>
+			</div>
+
+            <div id="cancel">
+				<button type="button" onclick="window.location.href='index.html'">Cancel</button>
+			</div>
+
+		</form>
+		<div id="message"></div>
+	</div>
+</body>
+</html>
