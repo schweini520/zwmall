@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<head>
+    <mata http-equiv="content-type" content="text/html"; charset="UTF-8">
+    <!-- <script src="./jquery-2.2.3.min.js"></script>
+    <link href="./bootstrap.min.css" rel="stylesheet">
+    <script src="./bootstrap.min.js"></script> -->
+
+    <script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>
+    <link href="http://how2j.cn/study/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <script src="http://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <link href="./navigation.css" rel="stylesheet">
+</head>
+
+<!-- <nav class="top">
+    <a href="#nowhere">
+        <span class="glyphicon glyphicon-home redColor"></span>
+        天猪首页
+    </a>
+
+    <span>噜，欢迎来到天猪</span>
+        <a href="#nowhere">请登录</a>
+        <a href="#nowhere">免费注册</a>
+
+    <span class="pull-right">
+        <a href="forebought">我的订单</a>
+        <a href="forecart">
+        <span class="glyphicon glyphicon-shopping-cart redColor"></span>
+        购物车<strong>0</strong>件</a>
+    </span>
+
+</nav> -->
+
+<div class="homepageDiv">
+    <script>
+    $(function(){
+        $("div.rightMenu span").mouseenter(function(){
+            var left = $(this).position().left;
+            var top = $(this).position().top;
+            var width = $(this).css("width");
+            var destLeft = parseInt(left) + parseInt(width)/2;
+            $("img#catear").css("left",destLeft);
+            $("img#catear").css("top",top-20);
+            $("img#catear").fadeIn(500);
+        });
+        $("div.rightMenu span").mouseleave(function(){
+            $("img#catear").hide();
+        });
+    });
+    </script>
+    <div style="height:50px"></div>
+<img class="catear" id="catear" src="http://how2j.cn/tmall/img/site/catear.png" style="left: 260.5px; top: 159.65px; display: none;">
+<div class="categoryWithCarousel">
+    <img class="cateye" id="cateye" src="http://how2j.cn/tmall/img/site/cateye.png">
+    <div class="headbar">
+        <div class="head">
+            <span class="glyphicon glyphicon-th-list" style="margin-left:10px"></span>
+            <span style="margin-left:10px;">商品分类</span>
+        </div>
+        <div class="rightMenu">
+            <span><a href="#nowhere"><img src="http://how2j.cn/tmall/img/site/chaoshi.png"></a></span>
+            <span><a href="#nowhere"><img src="http://how2j.cn/tmall/img/site/guoji.png"></a></span>
+            <span><a href="#nowhere">平板电视</a></span>
+            <span>
+				<a href="#nowhere">
+					马桶
+				</a></span>
+				<span>
+				<a href="#nowhere">
+					沙发
+				</a></span>
+            <span><a href="#nowhere">电热水器</a></span>
+        </div>
+    </div>
+    <div data-ride="carousel" class="carousel-of-product carousel slide" id="carousel-of-product">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li class="active" data-slide-to="0" data-target="#carousel-of-product"></li>
+            <li class="" data-slide-to="1" data-target="#carousel-of-product"></li>
+            <li class="" data-slide-to="2" data-target="#carousel-of-product"></li>
+            <li class="" data-slide-to="3" data-target="#carousel-of-product"></li>
+        </ol>
+        <!-- Wrapper for slide -->
+        <div role="listbox" class="carousel-inner">
+            <div class="item active">
+                <img src="./1.jpg" class="carousel carouselImage">
+            </div>
+            <div class="item">
+                <img src="./1.jpg" class="carousel carouselImage">
+            </div>
+            <div class="item">
+                <img src="./1.jpg" class="carousel carouselImage">
+            </div>
+            <div class="item">
+                <img src="./1.jpg" class="carousel carouselImage">
+            </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" data-slide="prev" role="button" href="#carousel-of-product">
+            <span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" data-slide="next" role="button" href="#carousel-of-product">
+            <span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>
+</div>

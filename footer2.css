@@ -1,0 +1,41 @@
+div.footer{
+    margin: 0px 0px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #e7e7e7;
+}
+div.copyright{
+    background-color: black;
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-top-color: #C40000;
+}
+div.copyright span.slash{
+    color: white;
+}
+div.footer div.copyright div.white_link a{
+    color: white;
+    padding: 0px 5px;
+}
+div.footer div.copyright div.white_link{
+    padding: 10px 0px;
+    margin-left: 10px;
+}
+div.lisence{
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+div.lisence span{
+    color: #A4A4A4;
+}
+div.lisence div.copyRightYear{
+    margin: 10px 0px;
+    color: #686868;
+}
+img.cateye{
+    margin-left: 20px;
+}
+body{
+    font-size: 12px;
+    font-family: Arial;
+}
